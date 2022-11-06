@@ -1,11 +1,65 @@
 import { Animated, PanResponder, StyleSheet, View } from "react-native";
 
+
+interface CircleProps {
+    top?: number,
+    left?: number,
+    height?: number,
+    width?: number,
+    backgroundColor?: "#fff",
+    borderColor?: "black",
+    borderWidth?: number,
+    borderRadius?: number
+  }
+
+
+const CircleBase = (props: CircleProps) =>{
+
+    const base = StyleSheet.create({
+        circle: {
+            top: props.top,
+            left: props.left,
+            height: props.height,
+            width: props.width,
+            backgroundColor: "#fff",
+            borderColor: "black",
+            borderWidth: props.borderWidth,
+            borderRadius: props.borderRadius
+        },
+    })
+    
+    const array = [base]
+    
+    console.log(array)
+    return(<>{array.map(base => {base.circle})}</>)
+}
+
+export function Circle(){
+    return(
+    <View>
+        <CircleBase top={10} left={10} height={60} width={60} backgroundColor={"#fff"} borderColor={"black"} borderWidth={5} borderRadius={50}/>
+        <CircleBase top={10} left={10} height={60} width={60} backgroundColor={"#fff"} borderColor={"black"} borderWidth={5} borderRadius={50}/>
+        <CircleBase top={10} left={10} height={60} width={60} backgroundColor={"#fff"} borderColor={"black"} borderWidth={5} borderRadius={50}/>
+        <CircleBase top={10} left={10} height={60} width={60} backgroundColor={"#fff"} borderColor={"black"} borderWidth={5} borderRadius={50}/>
+        <CircleBase top={10} left={10} height={60} width={60} backgroundColor={"#fff"} borderColor={"black"} borderWidth={5} borderRadius={50}/>
+        <CircleBase top={10} left={10} height={60} width={60} backgroundColor={"#fff"} borderColor={"black"} borderWidth={5} borderRadius={50}/>
+        <CircleBase top={10} left={10} height={60} width={60} backgroundColor={"#fff"} borderColor={"black"} borderWidth={5} borderRadius={50}/>
+        <CircleBase top={10} left={10} height={60} width={60} backgroundColor={"#fff"} borderColor={"black"} borderWidth={5} borderRadius={50}/>
+        <CircleBase top={10} left={10} height={60} width={60} backgroundColor={"#fff"} borderColor={"black"} borderWidth={5} borderRadius={50}/>
+        <CircleBase top={10} left={10} height={60} width={60} backgroundColor={"#fff"} borderColor={"black"} borderWidth={5} borderRadius={50}/>
+    </View>
+    )
+}
+
+
+
+
 export function Base(){
     const base = StyleSheet.create({
         container: {
           flex: 0.5,
           padding: 6,
-          marginHorizontal: -80,
+          marginHorizontal: -90,
           alignContent: "center"
         },
         circle1: {
@@ -113,7 +167,7 @@ export function Base(){
     return (
         <View style={[base.container,{flexDirection: "column", top: 280, justifyContent: "center"}]}>
             <View style={{ flex: 3.5, backgroundColor: "#F2F2F2", borderColor: "AFABAB", borderWidth: 2}} >
-                <View style={[base.circle1]}/>
+                <CircleBase top={10} left={10} height={60} width={60} backgroundColor={"#fff"} borderColor={"black"} borderWidth={5} borderRadius={50}/>
                 <View style={[base.circle2]}/>
                 <View style={[base.circle3]}/>
                 <View style={[base.circle4]}/>

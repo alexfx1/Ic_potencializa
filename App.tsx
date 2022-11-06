@@ -1,4 +1,5 @@
 import { Screen } from "./src/views/Screen";
+import Viewport from "./src/components/Viewport";
 
 
 export default function App() {

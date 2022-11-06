@@ -1,18 +1,21 @@
 import React, {useState} from 'react'
-import {View, Animated, PanResponder, StyleSheet} from 'react-native'
+import {View, Animated, PanResponder, StyleSheet, Dimensions} from 'react-native'
 
 
 export function Ball() {
     const pan = useState(new Animated.ValueXY())[0]
-    const translateX = Animated.diffClamp(pan.x, 0, -5);
-    const translateY = Animated.diffClamp(pan.y, 0, -5);
+    const translateX = Animated.diffClamp(pan.x, 0, Dimensions.get('window').height - 55);
+    const translateY = Animated.diffClamp(pan.y, 0, Dimensions.get('window').width - 55);
+
 
     const panResponder = useState(
         PanResponder.create({
             onStartShouldSetPanResponder: () => true,
             onMoveShouldSetPanResponder: () => true,
             onPanResponderMove: (evt, gestureState) => {
-                pan.setValue({x: gestureState.dx, y: gestureState.dy});
+                pan.setValue({x: gestureState.dx, y: gestureState.dy})
+                evt.bubbles
+                gestureState.numberActiveTouches.toFixed(20);
               },
             onPanResponderGrant: () => {
                 pan.setOffset({
@@ -31,7 +34,7 @@ export function Ball() {
           height: 55,
           width: 55,
           backgroundColor: "red",
-          borderRadius: 50
+          borderRadius: 50,
         }
       });
 
