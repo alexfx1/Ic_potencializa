@@ -1,5 +1,6 @@
 import { StyleSheet, View, Text, useWindowDimensions, Dimensions } from "react-native";
 import { Ball } from "../components/Ball";
+import { BallPan } from "../components/BallPan";
 import { Base } from "./Base";
 
 
@@ -37,7 +38,7 @@ export function Screen() {
             <Text style={screenConfig.label}>1</Text>
             <View></View>
             <Base/>
-            <Ball/>
+            <BallPan/>
         </View>
     )
 }

@@ -1,29 +1,23 @@
 import React,{
     StyleSheet,
-    Component,
     View,
     Text,
     PanResponder,
     Animated,
     Dimensions
 } from 'react-native';
+import { Component } from "react";
 
 export default class Viewport extends Component{
     
-    constructor(props){
+    constructor(props: any){
         super(props);
     
-        this.state = {
-            showDraggable   : true,     //Step 1
-            dropZoneValues  : null,
-            pan     : new Animated.ValueXY()   //Step 1
-        };
-    
-        this.panResponder = PanResponder.create({    //Step 2
+        PanResponder.create({    //Step 2
             onStartShouldSetPanResponder : () => true,
             onPanResponderMove           : Animated.event([null,{ //Step 3
-                dx : this.state.pan.x,
-                dy : this.state.pan.y
+                dx : this.statePan().x,
+                dy : this.statePan().y
             }]),
             onPanResponderRelease           : (e, gesture) => {
                 if(this.isDropZone(gesture)){ //Step 1
@@ -32,20 +26,34 @@ export default class Viewport extends Component{
                     });
                 }else{
                     Animated.spring(
-                        this.state.pan,
-                        {toValue:{x:0,y:0}}
+                        this.statePan(),
+                        {
+                            toValue: { x: 0, y: 0 },
+                            useNativeDriver: false
+                        }
                     ).start();
                 }
             } //Step 4
         });
     }
 
-    isDropZone(gesture){     //Step 2
+    state() {
+        showDraggable   : true     //Step 1
+        dropZoneValues  : null
+        pan     : new Animated.ValueXY()   //Step 1
+    }
+
+    statePan(){
+        let pan: any
+        return pan = new Animated.ValueXY()
+    }
+
+    isDropZone(gesture: any){   //Step 2
         var dz = this.state.dropZoneValues;
         return gesture.moveY > dz.y && gesture.moveY < dz.y + dz.height;
     }
 
-    setDropZoneValues(event){      //Step 1
+    setDropZoneValues(event: any){      //Step 1
         this.setState({
             dropZoneValues : event.nativeEvent.layout
         });
